@@ -1,12 +1,18 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  let name = 'John';
+  const [name, setName] = useState('John');
 
   const handleClick = () => {
-    name = 'Jane';
+    console.log(name);
+    setName('James');
     console.log(name);
   };
+
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
 
   return (
     <div className='App'>
