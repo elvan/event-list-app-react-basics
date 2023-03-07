@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "UMD",
     "target": "es6"
   },
   "include": [
