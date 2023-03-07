@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
+import EventList from './components/EventList';
 import Modal from './components/Modal';
 import Title from './components/Title';
 
 function App() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "mario's birthday bash", id: 1 },
@@ -38,15 +39,7 @@ function App() {
           <button onClick={() => setShowEvents(true)}>Show Events</button>
         </div>
       )}
-      {showEvents &&
-        events.map((event, index) => (
-          <React.Fragment key={event.id}>
-            <h2>
-              {index} - {event.title}
-            </h2>
-            <button onClick={() => handleClick(event.id)}>delete event</button>
-          </React.Fragment>
-        ))}
+      {showEvents && <EventList events={events} handleClick={handleClick} />}
 
       {showModal && (
         <Modal handleClose={handleClose}>
