@@ -1,48 +1,44 @@
 import { useState } from 'react';
 import './App.css';
+import Title from './components/Title';
 
 function App() {
+  const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
-    {
-      id: 1,
-      title: 'National Pollution Control Day'
-    },
-    {
-      id: 2,
-      title: 'International Day for the abolition of slavery'
-    },
-    {
-      id: 3,
-      title: 'International Volunteer Day'
-    }
+    { title: "mario's birthday bash", id: 1 },
+    { title: "bowser's live stream", id: 2 },
+    { title: 'race on moo moo farm', id: 3 },
   ]);
 
-  const [showEvents, setShowEvents] = useState(true);
-
-  const handleDeleteEvent = (id) => {
-    setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
+  const handleClick = (id) => {
+    setEvents((prevEvents) => {
+      return prevEvents.filter((event) => id !== event.id);
+    });
   };
 
   return (
     <div className='App'>
-      <h1>My Events</h1>
-      <button onClick={() => setShowEvents(!showEvents)}>
-        {showEvents ? 'Hide' : 'Show'} Events
-      </button>
+      <Title />
+
       {showEvents && (
-        <ul>
-          {events.map((event) => (
-            <div key={event.id}>
-              <h2>
-                #{event.id} {event.title}
-              </h2>
-              <button onClick={() => handleDeleteEvent(event.id)}>
-                Delete Event
-              </button>
-            </div>
-          ))}
-        </ul>
+        <div>
+          <button onClick={() => setShowEvents(false)}>Hide Events</button>
+        </div>
       )}
+      {!showEvents && (
+        <div>
+          <button onClick={() => setShowEvents(true)}>Show Events</button>
+        </div>
+      )}
+      {showEvents &&
+        events.map((event, index) => (
+          <div key={event.id}>
+            <h2>
+              {index} - {event.title}
+            </h2>
+            <button onClick={() => handleClick(event.id)}>delete event</button>
+          </div>
+        ))}
     </div>
   );
 }
