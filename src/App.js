@@ -59,6 +59,10 @@ function App() {
           </p>
         </Modal>
       )}
+
+      <div>
+        <button onClick={() => setShowModal(true)}>Show Modal</button>
+      </div>
     </div>
   );
 }
