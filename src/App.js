@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import EventList from './components/EventList';
 import Modal from './components/Modal';
+import NewEventForm from './components/NewEventForm';
 import Title from './components/Title';
 
 function App() {
@@ -42,19 +43,13 @@ function App() {
       {showEvents && <EventList events={events} handleClick={handleClick} />}
 
       {showModal && (
-        <Modal handleClose={handleClose} isSalesModal={true}>
-          <h2>Terms and Conditions</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error odit
-            nam et reprehenderit quibusdam temporibus officia dolorum quo sint
-            nemo quis, laborum, quasi nisi fugit praesentium debitis
-            repudiandae! Sapiente, omnis.
-          </p>
+        <Modal handleClose={handleClose}>
+          <NewEventForm />
         </Modal>
       )}
 
       <div>
-        <button onClick={() => setShowModal(true)}>Show Modal</button>
+        <button onClick={() => setShowModal(true)}>Add New Event</button>
       </div>
     </div>
   );
